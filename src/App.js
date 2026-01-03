@@ -1,23 +1,14 @@
 import logo from './logo.svg';
-import './App.css';
+import QuestionTimer from './components/QuestionTimer';
+import { useState } from 'react';
+import Summary from './components/Summary';
 
 function App() {
+  const [userResults,setUserResult] = useState({correct:0,wrong:0,skipped:0})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <QuestionTimer userResults={userResults} setUserResult={setUserResult} />
+      <Summary />
     </div>
   );
 }
