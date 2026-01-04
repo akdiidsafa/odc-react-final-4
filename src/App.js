@@ -4,7 +4,7 @@ import Quiz from './components/Quiz';
 function App() {
   return (
     <>
-      <div className='flex flex-col justify-start items-center pt-10 bg-[#300b59] min-h-screen'>
+      <div className='flex flex-col justify-start min-h-screen bg-gradient-to-b from-purple-900 to-slate-900 p-8'>
         <Header />
         <Quiz />
       </div>
