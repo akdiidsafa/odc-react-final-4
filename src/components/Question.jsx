@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import QuestionTimer from './QuestionTimer.jsx';
 import Answers from './Answers.jsx';
@@ -66,3 +67,4 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     </div>
   );
 }
+

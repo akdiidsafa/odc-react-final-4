@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 
 export default function QuestionTimer({ timeout, onTimeout, mode }) {
@@ -22,3 +23,4 @@ export default function QuestionTimer({ timeout, onTimeout, mode }) {
     <progress id="question-time" max={timeout} value={remainingTime} className={`progress-bar ${mode}`}  />
   );
 }
+
