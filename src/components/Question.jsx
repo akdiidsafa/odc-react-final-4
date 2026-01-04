@@ -1,9 +1,70 @@
-import React from 'react'
 
-function Question() {
+import { useState } from 'react';
+import QuestionTimer from './QuestionTimer.jsx';
+import Answers from './Answers.jsx';
+import QUESTIONS from '../questions.js';
+
+export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
+ 
+  const [answer, setAnswer] = useState({
+    selectedAnswer: '',
+    isCorrect: null
+  });
+
+ 
+  let timer = 10000; 
+  if (answer.selectedAnswer) {
+    timer = 5000; 
+  }
+  if (answer.isCorrect !== null) {
+    timer = 6000; 
+  }
+
+  function handleSelectAnswer(selectedAnswer) {
+  
+    setAnswer({
+      selectedAnswer: selectedAnswer,
+      isCorrect: null
+    });
+
+ 
+    setTimeout(() => {
+      setAnswer({
+        selectedAnswer: selectedAnswer,
+        isCorrect: QUESTIONS[index].answers[0] === selectedAnswer
+      });
+
+
+      setTimeout(() => {
+        onSelectAnswer(selectedAnswer);
+      }, 6000);
+    }, 5000);
+  }
+
+ 
+  let answerState = '';
+  if (answer.selectedAnswer && answer.isCorrect !== null) {
+    answerState = answer.isCorrect ? 'correct' : 'wrong';
+  } else if (answer.selectedAnswer) {
+    answerState = 'answered';
+  }
+
   return (
-    <div>Question</div>
-  )
+    <div className="text-center animate-fade-in">
+      <QuestionTimer
+        key={timer}  
+        timeout={timer}
+        onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null}
+        mode={answerState}
+      />
+      <h2 className="text-xl md:text-2xl font-medium my-8 text-gray-200 leading-relaxed">{QUESTIONS[index].text}</h2>
+      <Answers
+        answers={QUESTIONS[index].answers}
+        selectedAnswer={answer.selectedAnswer}
+        answerState={answerState}
+        onSelect={handleSelectAnswer}
+      />
+    </div>
+  );
 }
 
-export default Question
