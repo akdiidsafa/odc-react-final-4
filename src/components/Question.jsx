@@ -50,14 +50,14 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
   }
 
   return (
-    <div className="text-center animate-fade-in">
+    <div className="text-center animate-fade-in ">
       <QuestionTimer
         key={timer}  
         timeout={timer}
         onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null}
         mode={answerState}
       />
-      <h2 className="text-xl md:text-2xl font-medium my-8 text-gray-200 leading-relaxed">{QUESTIONS[index].text}</h2>
+      <h2 className="text-xl md:text-2xl font-medium my-8 text-blue-200 leading-relaxed">{QUESTIONS[index].text}</h2>
       <Answers
         answers={QUESTIONS[index].answers}
         selectedAnswer={answer.selectedAnswer}
